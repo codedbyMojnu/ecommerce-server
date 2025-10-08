@@ -9,13 +9,13 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
 - Protected checkout endpoint
 - MySQL database integration
 - CORS support for frontend applications
+- Environment-based configuration (development/production)
 
 ## Prerequisites
 
 - PHP 7.4 or higher
 - Composer
-- MySQL database (via DBngin on port 3307)
-- DBngin or similar MySQL server
+- MySQL database (via DBngin on port 3307 for development)
 
 ## Installation
 
@@ -31,17 +31,46 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
    composer install
    ```
 
-3. Start DBngin on port 3307
+3. For development:
+   - Start DBngin on port 3307
+   - Set up the database:
+     ```bash
+     php setup-database.php
+     ```
+   - Start the development server:
+     ```bash
+     php -S localhost:8080
+     ```
 
-4. Set up the database:
+## Production Deployment
 
-   ```bash
-   php setup-database.php
+### Option 1: Generic Production Server
+
+1. Set the `DATABASE_URL` environment variable to your production database URL:
+
+   ```
+   DATABASE_URL="mysql://root:vZfoFPPbhNIAuwhozsqbpiaGXsxxSUBG@shortline.proxy.rlwy.net:22824/railway"
    ```
 
-5. Start the development server:
+2. Run the production deployment script:
+
    ```bash
-   php -S localhost:8080
+   php deploy-production.php
+   ```
+
+3. Deploy your application to your production server
+
+### Option 2: Railway Deployment
+
+1. Create a new Railway project
+2. Add the MySQL database URL as an environment variable in Railway:
+   ```
+   DATABASE_URL="mysql://root:vZfoFPPbhNIAuwhozsqbpiaGXsxxSUBG@shortline.proxy.rlwy.net:22824/railway"
+   ```
+3. Deploy your code to Railway
+4. Run the database setup command in the Railway console:
+   ```bash
+   php deploy-production.php
    ```
 
 ## API Endpoints
@@ -101,7 +130,8 @@ This project includes a Postman collection for easy API testing:
 ```
 ecommerce-server/
 ├── config/
-│   └── database-connection.php
+│   ├── database-connection.php
+│   └── dotenv.php
 ├── controllers/
 │   ├── AuthController.php
 │   └── ProductController.php
@@ -113,22 +143,35 @@ ecommerce-server/
 ├── routes/
 │   └── api-endpoints.php
 ├── setup-database.php
+├── deploy-production.php
 ├── test-api.php
 ├── check-users.php
+├── test-railway-connection.php
 ├── Ecommerce_API.postman_collection.json
 ├── Ecommerce_API.postman_environment.json
 ├── POSTMAN_INSTRUCTIONS.md
 ├── README.md
 ├── index.php
+├── .env
 ├── composer.json
 └── composer.lock
 ```
+
+## Environment Configuration
+
+The application supports environment-based configuration:
+
+- Development: Uses DBngin on localhost:3307
+- Production: Uses DATABASE_URL environment variable
+
+To set up for production, add your database connection string to the `.env` file or set it as an environment variable.
 
 ## Troubleshooting
 
 ### Database Connection Failed
 
-Ensure DBngin is running on port 3307 and the database `ecommerce` exists.
+- For development: Ensure DBngin is running on port 3307
+- For production: Verify the DATABASE_URL environment variable is set correctly
 
 ### Function Redefinition Errors
 
