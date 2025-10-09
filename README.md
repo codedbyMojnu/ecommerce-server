@@ -59,7 +59,8 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
 1. Set the `DATABASE_URL` environment variable to your production database URL:
 
    ```
-   DATABASE_URL="mysql://root:vZfoFPPbhNIAuwhozsqbpiaGXsxxSUBG@shortline.proxy.rlwy.net:22824/railway"
+   example
+   DATABASE_URL="mysql://root12:vZfoFPPbhNIAuwhozs3qbpiaGXsxxSUBG@shortline.proxy.rlwy.net:22824/railway"
    ```
 
 2. Run the production deployment script:
