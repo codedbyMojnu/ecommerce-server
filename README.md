@@ -44,7 +44,17 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
 
 ## Production Deployment
 
-### Option 1: Generic Production Server
+### Option 1: Docker Deployment
+
+1. Build and run with Docker Compose:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Access your API at `http://localhost:8080`
+
+### Option 2: Generic Production Server
 
 1. Set the `DATABASE_URL` environment variable to your production database URL:
 
@@ -60,7 +70,7 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
 
 3. Deploy your application to your production server
 
-### Option 2: Railway Deployment
+### Option 3: Railway Deployment
 
 1. Create a new Railway project
 2. Add the MySQL database URL as an environment variable in Railway:
@@ -72,6 +82,15 @@ A simple PHP-based RESTful API for an e-commerce platform with JWT authenticatio
    ```bash
    php deploy-production.php
    ```
+
+### Option 4: Ngrok for Public Testing
+
+1. Follow the Docker deployment steps above
+2. Expose your API publicly using ngrok:
+   ```bash
+   ngrok http 8080
+   ```
+3. Use the provided public URL to access your API from anywhere
 
 ## API Endpoints
 
@@ -172,6 +191,14 @@ To set up for production, add your database connection string to the `.env` file
 
 - For development: Ensure DBngin is running on port 3307
 - For production: Verify the DATABASE_URL environment variable is set correctly
+
+### Docker Issues
+
+If you encounter Docker connection errors:
+
+1. **Docker Desktop Not Running**: Ensure Docker Desktop is running (look for the Docker whale icon in your system tray)
+2. **Permission Issues**: Run your terminal as Administrator on Windows
+3. **Restart Docker**: Try restarting Docker Desktop if issues persist
 
 ### Function Redefinition Errors
 

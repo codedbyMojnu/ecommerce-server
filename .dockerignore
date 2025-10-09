@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# IDE
+.vscode
+.idea
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Composer
+vendor/
+composer.lock
+
+# System
+.DS_Store
+Thumbs.db

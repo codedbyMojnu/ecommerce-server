@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    volumes:
+      - .:/var/www/html
